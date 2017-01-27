@@ -3,13 +3,17 @@ matrix2 = [1 5 4; 2 3 6;];
 matrix3 = [1 2 3 4; 5 6 7 8; 9 10 11 12;
     13 14 15 16;];
 
-var1=Determinant123(matrix1);
+
+check=Determinant123(matrix3);
+bob=Determinant123(matrix1);
+this=Determinant123(matrix2);
+
 
 function D= Determinant123(M)
 
 sz = size(M);
 if(sz(1) ~= sz(2))
-    D = 'Not Valid Input';
+    disp('Not Valid Input');
 end
 if(sz(1) == 2)
     D= A2D(M);
@@ -27,7 +31,14 @@ R = M(1,1)*M(2,2) - M(1,2)*M(2,1);
 end
 
 function B = A3D(M)
-    B =(M(1,1)* A2D([M(2,2) M(2,3); M(3,2) M(3,3)])) -(M(1,2)* A2D([M(2,1) M(2,3); M(3,2) M(3,3)])) + (M(1,3)* A2D([M(2,1) M(2,3); M(2,2) M(2,3)]));
+B =(M(1,1)* A2D([M(2,2) M(2,3); M(3,2) M(3,3)])) -(M(1,2)* A2D([M(2,1) M(2,3); M(3,2) M(3,3)])) + (M(1,3)* A2D([M(2,1) M(2,3); M(2,2) M(2,3)]));
 end
 
+function K = A4D(M)
+    var1 = (M(1,1) * ( A3D([M(2,2) M(2,3) M(2,4); M(3,2) M(3,3)  M(3,4);  M(4,2)  M(4,3)  M(4,4)])));
+    var2 = (M(1,2) * ( A3D([M(2,1) M(2,3) M(2,4); M(3,1) M(3,3)  M(3,4);  M(4,1)  M(4,3)  M(4,4)])));
+    var3 = (M(1,3) * ( A3D([M(2,1) M(2,2) M(2,4); M(3,1) M(3,2)  M(3,4);  M(4,1)  M(4,2)  M(4,4)])));
+    var4 = (M(1,4) * ( A3D([M(2,1) M(2,2) M(2,3); M(3,1) M(3,2)  M(3,3);  M(4,1)  M(4,2)  M(4,3)])));
+    K = var1 - var2 + var3 - var4;
+end
     
